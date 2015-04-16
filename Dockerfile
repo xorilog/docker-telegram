@@ -15,11 +15,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends 
 
-RUN wget https://tdesktop.com/linux -O /tmp/telegram-latest.tar.xz && \
+RUN wget https://tdesktop.com/linux/tsetup.0.8.4.tar.xz -O /tmp/telegram.tar.xz && \
     cd /tmp/ && \
-    tar xvfJ /tmp/telegram-latest.tar.xz && \
+    tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
-    rm -rf /tmp/{telegram-latest.tar.xz,Telegram}
+    rm -rf /tmp/{telegram.tar.xz,Telegram}
 
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 
