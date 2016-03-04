@@ -5,6 +5,7 @@ MAINTAINER Christophe Boucharlat <christophe.boucharlat@gmail.com>
 # Telegram Version 0.9.18
 
 RUN apt-get update && apt-get install -y \
+    apt-utils \
     dbus-x11 \
     dunst \
     hunspell-en-us \
