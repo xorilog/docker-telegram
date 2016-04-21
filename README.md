@@ -6,7 +6,13 @@ A Docker image that start a fresh telegram client.
 To spawn a new instance of Telegram:
 
 ```
-docker run -it --name telegram -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /dev/snd:/dev/snd --privileged xorilog/telegram
+docker run --rm -it --name telegram \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       -e DISPLAY=unix$DISPLAY \
+       -v /dev/snd:/dev/snd \
+       -v <Your_storage_dir>/.TelegramDesktop:/root/.TelegramDesktop \
+       --privileged \
+       xorilog/telegram
 ```
 ## Issues
 * You have to log out Telegram to close the docker container.
