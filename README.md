@@ -11,7 +11,6 @@ docker run --rm -it --name telegram \
        -e DISPLAY=unix$DISPLAY \
        -v /dev/snd:/dev/snd \
        -v <Your_storage_dir>/.TelegramDesktop:/root/.TelegramDesktop \
-       --privileged \
        xorilog/telegram
 ```
 ## Issues
