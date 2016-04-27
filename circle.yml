@@ -1,5 +1,5 @@
 machine:
-  service:
+  services:
     - docker
 
 test:

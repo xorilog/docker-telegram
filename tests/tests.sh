@@ -35,6 +35,7 @@ unset IFS
 set -x
 docker build -t ${base}:${suite} ${build_dir}
 )
+
 echo "                       ---                                   "
 echo "Successfully built ${base}:${suite} with context ${build_dir}"
 echo "                       ---                                   "
