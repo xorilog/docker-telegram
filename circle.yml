@@ -1,0 +1,7 @@
+machine:
+  service:
+    - docker
+
+test:
+  override:
+    - tests/tests.sh
