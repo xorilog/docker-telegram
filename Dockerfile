@@ -1,5 +1,5 @@
 # Base docker image
-FROM debian:jessie
+FROM ubuntu
 MAINTAINER Christophe Boucharlat <christophe.boucharlat@gmail.com>
 
 # Telegram Version 0.9.44
@@ -21,6 +21,9 @@ RUN wget https://tdesktop.com/linux/tsetup.0.9.44.tar.xz -O /tmp/telegram.tar.xz
     tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
     rm -rf /tmp/{telegram.tar.xz,Telegram}
+
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && apt-get update && apt-get install -y gcc-4.9 g++-4.9 && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4
+
 
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 
