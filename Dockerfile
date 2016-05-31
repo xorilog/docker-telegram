@@ -2,7 +2,7 @@
 FROM debian:jessie
 MAINTAINER Christophe Boucharlat <christophe.boucharlat@gmail.com>
 
-# Telegram Version 0.9.44
+# Telegram Version 0.9.49
 
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends 
 
-RUN wget https://tdesktop.com/linux/tsetup.0.9.44.tar.xz -O /tmp/telegram.tar.xz && \
+RUN wget https://tdesktop.com/linux/tsetup.0.9.49.tar.xz -O /tmp/telegram.tar.xz && \
     cd /tmp/ && \
     tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
