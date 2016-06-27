@@ -24,5 +24,5 @@ RUN wget https://tdesktop.com/linux/tsetup.0.9.56.tar.xz -O /tmp/telegram.tar.xz
 
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 
-# Autorun x11vnc
+# Autorun Telegram
 CMD ["/usr/bin/Telegram"]
