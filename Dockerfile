@@ -14,13 +14,18 @@ RUN apt-get update && apt-get install -y \
     libx11-xcb1 \
     gconf2 \
     wget \
-    --no-install-recommends 
+    --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 RUN wget https://tdesktop.com/linux/tsetup.0.9.56.tar.xz -O /tmp/telegram.tar.xz && \
     cd /tmp/ && \
     tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
-    rm -rf /tmp/{telegram.tar.xz,Telegram}
+    rm -rf /tmp/{telegram.tar.xz,Telegram} && \
+    rm /etc/fonts/conf.d/10-scale-bitmap-fonts.conf && \
+    fc-cache -fv
 
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 
