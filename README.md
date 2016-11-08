@@ -2,6 +2,8 @@
 A Docker image that start a fresh telegram client. 
 
 [![Circle CI](https://circleci.com/gh/xorilog/docker-telegram.svg?style=shield)](https://circleci.com/gh/xorilog/docker-telegram)  
+[![Image Layers](https://images.microbadger.com/badges/image/xorilog/telegram.svg)](https://microbadger.com/images/xorilog/telegram)   
+
 
 ## Usage
 To spawn a new instance of Telegram:
