@@ -2,7 +2,7 @@
 FROM debian:jessie
 MAINTAINER Christophe Boucharlat <christophe.boucharlat@gmail.com>
 
-# Telegram Version 1.0.5
+# Telegram Version 1.0.12
 
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
-RUN wget https://tdesktop.com/linux/tsetup.1.0.5.tar.xz -O /tmp/telegram.tar.xz && \
+RUN wget https://tdesktop.com/linux/tsetup.1.0.12.tar.xz -O /tmp/telegram.tar.xz && \
     cd /tmp/ && \
     tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
