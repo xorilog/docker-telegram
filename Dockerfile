@@ -1,6 +1,6 @@
 # Base docker image
 FROM debian:jessie
-MAINTAINER Christophe Boucharlat <christophe.boucharlat@gmail.com>
+LABEL maintainer "Christophe Boucharlat <christophe.boucharlat@gmail.com>"
 
 # Telegram Version 1.0.27
 
