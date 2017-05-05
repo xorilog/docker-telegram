@@ -1,0 +1,20 @@
+[Unit]
+Description=Telegram with GUI in a container
+Requires=docker.service graphical.target
+After=docker.service
+Wants=display-manager.service NetworkManager-wait-online.service network-online.target
+
+[Service]
+Environment="XAUTHORITY=/home/%i/.Xauthority"
+Environment=DISPLAY=:0
+User=%i
+ExecStartPre=-/usr/bin/docker pull xorilog/telegram
+ExecStartPre=-/usr/bin/docker rm -vf telegram
+ExecStartPre=/bin/bash -c "xhost +"
+ExecStart=/usr/bin/docker run -i --rm --name telegram -v /etc/localtime:/etc/localtime:ro --ipc="host" -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix${DISPLAY} --device /dev/snd --device /dev/snd -v /home/%i/.TelegramDesktop:/root/.TelegramDesktop xorilog/telegram
+ExecStop=/usr/bin/docker rm -vf telegram
+ExecStop=/bin/bash -c "xhost -"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
