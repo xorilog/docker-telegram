@@ -13,6 +13,7 @@ docker run --rm -it --name telegram \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
        -e DISPLAY=unix$DISPLAY \
        --device /dev/snd \
+       -v /etc/localtime:/etc/localtime:ro \
        -v <Your_storage_dir>/.TelegramDesktop:/root/.local/share/TelegramDesktop/ \
        xorilog/telegram
 ```
