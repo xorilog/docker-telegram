@@ -32,6 +32,6 @@ xhost +
 ```
 do not forget to remove it after start or usage (`xhost -`)  
 The previous command is to be run on a linux machine. But Mac users, I have a special surprise for you. You can also do fun hacks with X11. Details are described [here](https://github.com/docker/docker/issues/8710).
-
+[This may be more convenient to read](https://gist.github.com/netgusto/931085fc3673b69dd15a1763784307c5)
 
 Thanks to [Telegram](https://telegram.org/) for their great app !
