@@ -7,12 +7,22 @@ A Docker image that start a fresh telegram client.
 
 ## Usage
 To spawn a new instance of Telegram:
-
+### Linux
 ```shell
 docker run --rm -it --name telegram \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
        -e DISPLAY=unix$DISPLAY \
        --device /dev/snd \
+       -v /etc/localtime:/etc/localtime:ro \
+       -v <Your_storage_dir>/.TelegramDesktop:/root/.local/share/TelegramDesktop/ \
+       xorilog/telegram
+```
+### Mac Os
+> Requires xquartz (`brew cask install xquartz` then reboot your computer & check in preferences>Security : Authenticate & Allow connections checkboxes)
+```
+IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+docker run --rm -it --name telegram \
+       -e DISPLAY=$(xhost + $(hostname) > /dev/null; echo $IP):0 \
        -v /etc/localtime:/etc/localtime:ro \
        -v <Your_storage_dir>/.TelegramDesktop:/root/.local/share/TelegramDesktop/ \
        xorilog/telegram
