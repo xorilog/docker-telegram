@@ -17,7 +17,7 @@ workflow "on push tag, tweet message" {
 }
 
 action "Advertise tweetosphere" {
-  uses = "xorilog/twitter-@master"
+  uses = "xorilog/twitter-action@master"
   secrets = ["TWITTER_CONSUMER_KEY", "TWITTER_CONSUMER_SECRET", "TWITTER_ACCESS_TOKEN", "TWITTER_ACCESS_SECRET"]
   args = ["-message", "New version is out ! $GITHUB_REF"]
 }
