@@ -2,7 +2,7 @@
 FROM debian:jessie
 LABEL maintainer "Christophe Boucharlat <christophe.boucharlat@gmail.com>"
 
-# Telegram Version 1.5.8
+# Telegram Version 1.5.15
 
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget https://updates.tdesktop.com/tlinux/tsetup.1.5.8.tar.xz -O /tmp/telegram.tar.xz && \
+RUN wget https://updates.tdesktop.com/tlinux/tsetup.1.5.15.tar.xz -O /tmp/telegram.tar.xz && \
     cd /tmp/ && \
     tar xvfJ /tmp/telegram.tar.xz && \
     mv /tmp/Telegram/Telegram /usr/bin/Telegram && \
