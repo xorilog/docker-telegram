@@ -27,6 +27,32 @@ docker run --rm -it --name telegram \
        -v <Your_storage_dir>/.TelegramDesktop:/root/.local/share/TelegramDesktop/ \
        xorilog/telegram
 ```
+
+## systemd
+### Adding the service
+```
+sudo curl -o /etc/systemd/system/telegram@.service "https://raw.githubusercontent.com/xorilog/docker-telegram/master/telegram%40.service"
+sudo systemctl daemon-reload
+```
+
+### Adding custom parameters
+* Add a file: `/etc/systemd/system/telegram@.service.d/proxy.conf` and replace the `<value>` with your parameters
+```
+[Service]
+Environment="http_proxy=http://<proxy_name>:<proxy_port>"
+Environment="https_proxy=http://<proxy_name>:<proxy_port>"
+Environment="no_proxy=localhost,.lxd"
+Environment=DNS=<DNS_IP>
+```
+* reload systemd `sudo systemctl daemon-reload`
+* restart your service `sudo systemctl restart telegram@<your_username>.service`
+
+### Activating for a user
+```
+sudo systemctl enable telegram@<your_username>.service
+sudo systemctl start telegram@<your_username>.service
+```
+
 ## Issues
 * You have to log out Telegram to close the docker container.  
 

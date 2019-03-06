@@ -5,13 +5,14 @@ After=docker.service
 Wants=display-manager.service NetworkManager-wait-online.service network-online.target
 
 [Service]
+Environment=DNS=1.1.1.1
 Environment="XAUTHORITY=/home/%i/.Xauthority"
 Environment=DISPLAY=:0
 User=%i
 ExecStartPre=-/usr/bin/docker pull xorilog/telegram
 ExecStartPre=-/usr/bin/docker rm -vf telegram
 ExecStartPre=/bin/bash -c "xhost +"
-ExecStart=/usr/bin/docker run -i --rm --name telegram -v /etc/localtime:/etc/localtime:ro --ipc="host" -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix${DISPLAY} --device /dev/snd --device /dev/snd -v /home/%i/.TelegramDesktop:/root/.local/share/TelegramDesktop xorilog/telegram
+ExecStart=/usr/bin/docker run -i --rm --name telegram -v /etc/localtime:/etc/localtime:ro --ipc="host" --dns=${DNS} -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e http_proxy=${http_proxy} -e https_proxy=${https_proxy} -e no_proxy=${no_proxy} -e HTTP_PROXY=${http_proxy} -e HTTPS_PROXY=${https_proxy} -e NO_PROXY=${no_proxy} -e DISPLAY=unix${DISPLAY} --device /dev/snd --device /dev/snd -v /home/%i/.TelegramDesktop:/root/.local/share/TelegramDesktop xorilog/telegram
 ExecStop=/usr/bin/docker rm -vf telegram
 ExecStop=/bin/bash -c "xhost -"
 Restart=on-failure
