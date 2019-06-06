@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
     python3-dbus \
     software-properties-common \
     libx11-xcb1 \
+    libasound2 \
     gconf2 \
     --no-install-recommends \
     && apt-get clean \
