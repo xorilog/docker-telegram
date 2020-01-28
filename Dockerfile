@@ -41,7 +41,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
 # Telegram Version 1.9.8
 COPY --from=downloader /usr/bin/Telegram /usr/bin/Telegram
 
