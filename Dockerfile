@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 1.9.8
-RUN wget https://updates.tdesktop.com/tlinux/tsetup.1.9.8.tar.xz -O /tmp/telegram.tar.xz \
+# Telegram Version 1.9.14
+RUN wget https://updates.tdesktop.com/tlinux/tsetup.1.9.14.tar.xz -O /tmp/telegram.tar.xz \
     && cd /tmp/ \
     && tar xvfJ /tmp/telegram.tar.xz \
     && mv /tmp/Telegram/Telegram /usr/bin/Telegram \
@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 1.9.8
+# Telegram Version 1.9.14
 COPY --from=downloader /usr/bin/Telegram /usr/bin/Telegram
 
 WORKDIR $HOME
