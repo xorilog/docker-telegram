@@ -37,6 +37,9 @@ RUN apt-get update && apt-get install -y \
     libx11-xcb1 \
     libasound2 \
     gconf2 \
+    libdrm2 \
+    libice6 \
+    libsm6 \
     --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
