@@ -40,6 +40,8 @@ RUN apt-get update && apt-get install -y \
     libdrm2 \
     libice6 \
     libsm6 \
+    libegl1-mesa-dev \
+    libgl1-mesa-glx \
     --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
