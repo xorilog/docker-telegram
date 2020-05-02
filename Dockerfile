@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
     python3-dbus \
     software-properties-common \
     libx11-xcb1 \
-    libasound2 \
+    libpulse0 \
     gconf2 \
     libdrm2 \
     libice6 \
