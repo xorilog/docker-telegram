@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 1.9.21
-RUN wget https://updates.tdesktop.com/tlinux/tsetup.1.9.21.tar.xz -O /tmp/telegram.tar.xz \
+# Telegram Version 2.2
+RUN wget https://updates.tdesktop.com/tlinux/tsetup.2.2.0.tar.xz -O /tmp/telegram.tar.xz \
     && cd /tmp/ \
     && tar xvfJ /tmp/telegram.tar.xz \
     && mv /tmp/Telegram/Telegram /usr/bin/Telegram \
@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
     python3-dbus \
     software-properties-common \
     libx11-xcb1 \
-    libasound2 \
+    libpulse0 \
     gconf2 \
     libdrm2 \
     libice6 \
@@ -46,8 +46,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 1.9.21
-COPY --from=downloader /usr/bin/Telegram /usr/bin/Telegram
+COPY --from=downloader --chown=user /usr/bin/Telegram /home/user/Telegram
 
 WORKDIR $HOME
 USER user
@@ -55,4 +54,4 @@ USER user
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 
 # Autorun Telegram
-CMD ["/usr/bin/Telegram"]
+CMD ["/home/user/Telegram"]
