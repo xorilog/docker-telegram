@@ -1,11 +1,24 @@
 #!/bin/bash
 
+set -e
+
 # Gather latest version of telegram
 version=$(curl -XGET --head https://telegram.org/dl/desktop/linux |grep Location |cut -d '/' -f 5 |cut -d '.' -f 2-4)
 sed -i 's/\(Telegram Version \)[0-9]*\.[0-9]*\.[0-9]*$/\1'"${version}"'/' Dockerfile
 sed -i 's/\(tsetup.\).*\(.tar.xz -O\)/\1'"${version}"'\2/' Dockerfile
+
+# Local build to validate
+docker build -t "local-build/telegram:${version}" .
+
+# Commit with signature, tag and push code.
 git commit -am "Telegram version ${version}" -S
 git tag -am "Telegram version ${version}" "${version}"
 git push --follow-tags
-docker build -t "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}" .
+
+# Tag and Push to GitHub Packages
+docker tag "local-build/telegram:${version}" "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}"
 docker push "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}"
+
+# Tag and Push to GitHub Container Registry
+docker tag "local-build/telegram:${version}" "ghcr.io/xorilog/telegram:${version}"
+docker push "ghcr.io/xorilog/telegram:${version}"

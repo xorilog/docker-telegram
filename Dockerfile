@@ -19,6 +19,7 @@ RUN wget https://updates.tdesktop.com/tlinux/tsetup.2.5.1.tar.xz -O /tmp/telegra
 # Base docker image
 FROM debian:stretch
 LABEL maintainer "Christophe Boucharlat <christophe.boucharlat@gmail.com>"
+LABEL org.opencontainers.image.source https://github.com/xorilog/docker-telegram
 
 # Make a user
 ENV HOME /home/user
