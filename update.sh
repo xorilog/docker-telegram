@@ -22,3 +22,11 @@ docker push "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}"
 # Tag and Push to GitHub Container Registry
 docker tag "local-build/telegram:${version}" "ghcr.io/xorilog/telegram:${version}"
 docker push "ghcr.io/xorilog/telegram:${version}"
+
+# Tag and Push as latest to GitHub Packages
+docker tag "local-build/telegram:${version}" "docker.pkg.github.com/xorilog/docker-telegram/telegram:latest"
+docker push "docker.pkg.github.com/xorilog/docker-telegram/telegram:latest"
+
+# Tag and Push as latest to GitHub Container Registry
+docker tag "local-build/telegram:${version}" "ghcr.io/xorilog/telegram:latest"
+docker push "ghcr.io/xorilog/telegram:latest"
