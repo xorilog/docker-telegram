@@ -16,6 +16,12 @@ git tag -am "Telegram version ${version}" "${version}"
 git push --follow-tags
 
 # Tag and Push to GitHub Packages
+docker tag "local-build/telegram:${version}" "xorilog/telegram:${version}"
+docker tag "local-build/telegram:${version}" "xorilog/telegram:latest"
+docker push "xorilog/telegram:${version}"
+docker push "xorilog/telegram:latest"
+
+# Tag and Push to GitHub Packages
 docker tag "local-build/telegram:${version}" "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}"
 docker push "docker.pkg.github.com/xorilog/docker-telegram/telegram:${version}"
 
