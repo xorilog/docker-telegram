@@ -1,7 +1,12 @@
 # Gathering of binary
 FROM debian:jessie-slim as downloader
 
-RUN apt-get update && apt-get install -y \
+ARG http_proxy=""
+ARG https_proxy=""
+ARG apt_sources="http://deb.debian.org"
+
+RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
     apt-utils \
     software-properties-common \
     wget \
@@ -9,8 +14,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 2.2
-RUN wget https://updates.tdesktop.com/tlinux/tsetup.3.4.3.tar.xz -O /tmp/telegram.tar.xz \
+# Telegram Version 3.4.3
+RUN env http_proxy=$http_proxy https_proxy=$https_proxy wget https://updates.tdesktop.com/tlinux/tsetup.3.4.3.tar.xz -O /tmp/telegram.tar.xz \
     && cd /tmp/ \
     && tar xvfJ /tmp/telegram.tar.xz \
     && mv /tmp/Telegram/Telegram /usr/bin/Telegram \
@@ -27,8 +32,13 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \
 	&& usermod -a -G audio,video user
 
+ARG http_proxy=""
+ARG https_proxy=""
+ARG apt_sources="http://deb.debian.org"
+
 # Install required deps
-RUN apt-get update && apt-get install -y \
+RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
     apt-utils \
     dbus-x11 \
     dunst \
