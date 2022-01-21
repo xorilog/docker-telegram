@@ -1,5 +1,5 @@
 # Gathering of binary
-FROM debian:jessie-slim as downloader
+FROM debian:stretch-slim as downloader
 
 ARG http_proxy=""
 ARG https_proxy=""
@@ -10,6 +10,7 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     apt-utils \
     software-properties-common \
     wget \
+    xz-utils \
     --no-install-recommends && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
