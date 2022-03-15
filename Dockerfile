@@ -15,8 +15,8 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 3.5.2
-RUN env http_proxy=$http_proxy https_proxy=$https_proxy wget https://updates.tdesktop.com/tlinux/tsetup.3.5.2.tar.xz -O /tmp/telegram.tar.xz \
+# Telegram Version 3.6.0
+RUN env http_proxy=$http_proxy https_proxy=$https_proxy wget https://updates.tdesktop.com/tlinux/tsetup.3.6.0.tar.xz -O /tmp/telegram.tar.xz \
     && cd /tmp/ \
     && tar xvfJ /tmp/telegram.tar.xz \
     && mv /tmp/Telegram/Telegram /usr/bin/Telegram \
