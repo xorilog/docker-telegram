@@ -1,6 +1,7 @@
 # Gathering of binary
 FROM debian:stretch-slim as downloader
 
+ARG telegram_version=""
 ARG http_proxy=""
 ARG https_proxy=""
 ARG apt_sources="http://deb.debian.org"
@@ -11,12 +12,23 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     software-properties-common \
     wget \
     xz-utils \
+    curl \
     --no-install-recommends && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Telegram Version 4.5.3
-RUN env http_proxy=$http_proxy https_proxy=$https_proxy wget https://updates.tdesktop.com/tlinux/tsetup.4.5.3.tar.xz -O /tmp/telegram.tar.xz \
+RUN env \
+      http_proxy=$http_proxy \
+      https_proxy=$https_proxy \
+      wget https://updates.tdesktop.com/tlinux/tsetup."${telegram_version:-$(curl \
+        -sXGET \
+        --head https://telegram.org/dl/desktop/linux \
+        | grep location \
+        | cut -d '/' -f 5 \
+        |cut -d '.' -f 2-4 \
+      )}".tar.xz \
+      -O /tmp/telegram.tar.xz \
     && cd /tmp/ \
     && tar xvfJ /tmp/telegram.tar.xz \
     && mv /tmp/Telegram/Telegram /usr/bin/Telegram \
@@ -50,6 +62,7 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     libpulse0 \
     gconf2 \
     libdrm2 \
+    libgtk-3-0 \
     libice6 \
     libsm6 \
     libegl1-mesa-dev \
