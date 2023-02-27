@@ -17,7 +17,7 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 4.6.2
+# Telegram Version 4.6.5
 RUN env \
       http_proxy=$http_proxy \
       https_proxy=$https_proxy \
