@@ -1,12 +1,12 @@
 # Gathering of binary
-FROM debian:stretch-slim as downloader
+FROM debian:bookworm-slim as downloader
 
 ARG telegram_version=""
 ARG http_proxy=""
 ARG https_proxy=""
 ARG apt_sources="http://deb.debian.org"
 
-RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
+RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list.d/debian.sources && \
     apt-get update && apt-get install -y \
     apt-utils \
     software-properties-common \
@@ -17,7 +17,7 @@ RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Telegram Version 4.7.1
+# Telegram Version 4.8.4
 RUN env \
       http_proxy=$http_proxy \
       https_proxy=$https_proxy \
@@ -35,7 +35,7 @@ RUN env \
     && rm -rf /tmp/{telegram.tar.xz,Telegram}
 
 # Base docker image
-FROM debian:stretch
+FROM debian:bookworm
 LABEL maintainer "Christophe Boucharlat <christophe.boucharlat@gmail.com>"
 LABEL org.opencontainers.image.source https://github.com/xorilog/docker-telegram
 
@@ -50,7 +50,7 @@ ARG https_proxy=""
 ARG apt_sources="http://deb.debian.org"
 
 # Install required deps
-RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list && \
+RUN sed -i "s@http://deb.debian.org@$apt_sources@g" /etc/apt/sources.list.d/debian.sources && \
     apt-get update && apt-get install -y \
     apt-utils \
     dbus-x11 \
